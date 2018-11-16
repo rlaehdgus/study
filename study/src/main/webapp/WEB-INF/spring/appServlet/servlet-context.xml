@@ -3,7 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -25,14 +24,14 @@
 	<context:component-scan base-package="com.study.www" />
 	
 	<!-- 인터셉터 객체 생성 -->
-	<beans:bean id="loginInterceptor" class="com.study.www.interceptor.LoggerInterceptor">
+	<beans:bean id="loggerInterceptor" class="com.study.www.interceptor.LoggerInterceptor">
 	</beans:bean>
 	
 	<!-- 인터셉터 생성 -->
 	<interceptors>
 		<interceptor>
 			<mapping path=""/>
-			<beans:ref bean="LoggerInterceptor"/> 
+			<beans:ref bean="loggerInterceptor"/> 
 		</interceptor>
 	</interceptors>
 	
