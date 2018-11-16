@@ -3,28 +3,29 @@ package com.study.www.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
-	protected Log log = LogFactory.getLog(LoggerInterceptor.class); //Log °´Ã¼ »ý¼º
+	protected Logger log = LoggerFactory.getLogger(LoggerInterceptor.class); //Log ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	
-	/* ÀüÃ³¸®±â ¸Þ¼­µå(Controller°¡ ½ÇÇàµÇ±â Àü¿¡ ½ÇÇàµÈ´Ù */
+	/* ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½(Controllerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½ */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		if(log.isDebugEnabled()) {
-			log.debug("========================================= START ========================================="); //¿äÃ»À» º¸±âÀ§ÇÑ °æ°è¼±
-			log.debug(" Reguest URI \t:  "+request.getRequestURI()); //ÇöÀç È£ÃâµÈ URI°¡ ¹«¾ùÀÎÁö º¸¿©ÁÜ
+			log.debug("========================================= START ========================================="); //ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½è¼±
+			log.debug(" Reguest URI \t:  "+request.getRequestURI()); //ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ URIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		return super.preHandle(request, response, handler);
 	}
 	
-	/* ÈÄÃ³¸®±â ¸Þ¼­µå(Controller°¡ ½ÇÇàµÈ ÈÄ È£ÃâµÈ´Ù.) */
+	/* ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½(Controllerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.) */
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		log.debug("========================================= END ========================================="); //¿äÃ»À» º¸±âÀ§ÇÑ °æ°è¼±
+		log.debug("========================================= END ========================================="); //ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½è¼±
 	}
 }
