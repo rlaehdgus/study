@@ -19,7 +19,7 @@ public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	@RequestMapping(value = {"/", "/main.do"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
 	public String home() {
 		logger.info("main start!");
 		

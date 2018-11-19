@@ -14,11 +14,17 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	<!-- myhome mysql connection -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 		<property name="url" value="jdbc:log4jdbc:mysql://root:3306/bbs?useSSL=false"/>
 		<property name="username" value="root"/>
 		<property name="password" value="1234"/>
+	</bean> -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="url" value="jdbc:log4jdbc:mysql://pcn-mysql1.ciexm6d8h3je.ap-northeast-2.rds.amazonaws.com:3306/appr3?useSSL=false"/>
+		<property name="username" value="appr3"/>
+		<property name="password" value="appr3"/>
 	</bean>
 	
 	<!-- mybatis SqlSessionFactoryBean -->

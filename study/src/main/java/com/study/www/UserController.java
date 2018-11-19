@@ -11,7 +11,7 @@ public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	@RequestMapping(value = {"/sign_up.do"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/sign_up"}, method = RequestMethod.GET)
 	public String sign_up() {
 		logger.info("sign_up start!");
 		
