@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.www.mapper.UserMapper">
+
+	<insert id="user_add" parameterType="userVo">
+		INSERT INFO USER_INFO
+			(U_ID, U_PW, U_NAME, U_GENDE, U_EMAIL, U_ADDR, U_JOINDATE)
+		VALUES
+			(#{u_id}, #{u_pw}, #{u_name}, #{u_gende}, #{u_email}, #{u_addr}, now())
+	</insert>
+
+</mapper>
