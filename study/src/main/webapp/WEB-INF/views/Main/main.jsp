@@ -10,6 +10,10 @@
 			헤더
 		</header>
 		
+		<nav>
+			<jsp:include page="../Member/sign_up.jsp"/>
+		</nav>
+		
 		<section>
 			몸통
 		</section>
