@@ -37,8 +37,6 @@ public class UserController {
 	public String login_check(@ModelAttribute("UserVO") UserVO userVo, Model model, HttpSession session) {
 		logger.info("user_add start!");
 		
-		String returnUrl = "";
-		
 		//세션이 있을 경우 세션 초기화
 		if(session.getAttribute("userVo.u_id") != null) {
 			session.invalidate();
@@ -49,12 +47,9 @@ public class UserController {
 		
 		if(session.getAttribute("userVo.u_id") == null) {
 			session.setAttribute("userVo", userVo);
-			returnUrl = "Main/main";
-		} else {
-			returnUrl = "";
 		}
 		
-		return returnUrl;
+		return "Main/main";
 	}
 	
 }
