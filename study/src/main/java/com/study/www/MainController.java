@@ -19,8 +19,8 @@ public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	@RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
-	public String home() {
+	@RequestMapping(value = {"main.do"}, method = RequestMethod.GET)
+	public String main() {
 		logger.info("main start!");
 		
 		return "Main/main";
