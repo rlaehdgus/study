@@ -11,7 +11,12 @@
 		</header>
 		
 		<nav>
-			<jsp:include page="../Member/sign_up.jsp"/>
+		<div>
+			<jsp:include page="../Member/join.jsp"/>		
+		</div>
+		<div>
+			<jsp:include page="../Member/login.jsp"/>
+		</div>
 		</nav>
 		
 		<section>
