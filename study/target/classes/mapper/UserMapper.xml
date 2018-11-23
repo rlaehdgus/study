@@ -12,7 +12,7 @@
 			(#{u_id}, #{u_pw}, #{u_name}, #{u_birth}, #{u_gende}, #{u_email}, #{u_addr1}, #{u_addr2})
 	</insert>
 	
-	<select id="login_check" parameterType="userVo" resultType="userVo">
+	<select id="user_check" parameterType="userVo" resultType="userVo">
 		SELECT
 			U_ID,
 			U_PW,
@@ -22,7 +22,8 @@
 			U_EMAIL,
 			U_ADDR1,
 			U_ADDR2,
-			U_JOINDATE
+			U_JOINDATE,
+			U_UPDATEDATE
 		FROM
 			USER_INFO
 		WHERE
@@ -30,5 +31,21 @@
 			AND
 			U_PW = #{u_pw}
 	</select>
+	
+	<update id="user_update" parameterType="userVo">
+		UPDATE 
+			USER_INFO
+		SET
+			U_PW = #{u_pw},
+			U_NAME = #{u_name},
+			U_BIRTH = #{u_birth},
+			U_GENDE = #{u_gende},
+			U_EMAIL = #{u_email},
+			U_ADDR1 = #{u_addr1},
+			U_ADDR2 = #{u_addr2},
+			U_UPDATEDATE = NOW()
+		WHERE
+			U_ID = #{u_id}
+	</update>
 
 </mapper>

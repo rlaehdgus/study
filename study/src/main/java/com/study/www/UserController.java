@@ -45,7 +45,7 @@ public class UserController {
 		}
 		
 		//로그인 할 정보를 usreVo 변수에 저장
-		userVo = u_service.login_check(userVo);
+		userVo = u_service.user_check(userVo);
 
 		//세션이 없을 경우 로그인 값을 세션에 저장
 		if(session.getAttribute("member") == null) {
@@ -63,5 +63,30 @@ public class UserController {
 		
 		return "redirect:main.do";
 	}
+	
+	@RequestMapping(value = {"/mypage.do"}, method = RequestMethod.GET)
+	public String mypage(@ModelAttribute("userVo") UserVO userVo) {
+		logger.info("mypage start!");
+		
+		return "Member/mypage";
+	}
+	
+	@RequestMapping(value = {"/user_update.do"}, method = RequestMethod.POST)
+	public String user_update(@ModelAttribute("userVo") UserVO userVo, HttpSession session) {
+		logger.info("user_update start!");
+		
+		//회원 정보가 변경된 데이터를 저장
+		u_service.user_update(userVo);
+		
+		//회원 정보가 변경된 데이터를 변수에 저장
+		userVo = u_service.user_check(userVo);
+		
+		//회원 정보를 세션에 저장
+		session.setAttribute("member", userVo);
+		
+		return "redirect:mypage.do";
+	}
+	
+	
 	
 }

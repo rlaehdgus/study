@@ -19,7 +19,11 @@ public class UserMapper {
 		sqlSession.insert(Namespace+".user_add", userVo);
 	}
 	
-	public UserVO login_check(UserVO userVo) {
-		return sqlSession.selectOne(Namespace+".login_check", userVo);
+	public UserVO user_check(UserVO userVo) {
+		return sqlSession.selectOne(Namespace+".user_check", userVo);
+	}
+	
+	public void user_update(UserVO userVo) {
+		sqlSession.update(Namespace+".user_update", userVo);
 	}
 }

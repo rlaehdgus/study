@@ -13,5 +13,5 @@ public class UserVO {
 	private String u_addr1;
 	private String u_addr2;
 	private String u_joindate;
-	
+	private String u_updatedate;
 }

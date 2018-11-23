@@ -20,8 +20,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO login_check(UserVO userVo) {
+	public UserVO user_check(UserVO userVo) {
 		
-		return u_mapper.login_check(userVo);
+		return u_mapper.user_check(userVo);
+	}
+	
+	@Override
+	public void user_update(UserVO userVo) {
+		
+		u_mapper.user_update(userVo);
 	}
 }

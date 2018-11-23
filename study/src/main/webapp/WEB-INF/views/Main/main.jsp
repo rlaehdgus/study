@@ -7,26 +7,7 @@
 		<title>Main</title>
 	</head>
 	<body>
-		<header>
-			<c:if test="${empty member.u_id }">
-				로그인 필요
-				<div>
-					<div>
-						<jsp:include page="../Member/login.jsp"/>
-						<jsp:include page="../Member/join.jsp"/>
-					</div>
-				</div>
-			</c:if>
-			<c:if test="${!empty member.u_id }">
-				<span><a href="#">${member.u_id }(${member.u_name })</a>님 안녕하세요</span>
-				<div>
-					<div>
-						<a href="mypage.do">마이페이지</a><br>
-						<a href="logout.do">로그아웃</a>
-					</div>
-				</div>
-			</c:if>
-		</header>
+		<jsp:include page="../Layout/gnb.jsp"/>
 
 		<section>
 			
