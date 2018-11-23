@@ -7,7 +7,7 @@
 		<title>Main</title>
 	</head>
 	<body>
-		<jsp:include page="../Layout/gnb.jsp"/>
+		<jsp:include page="../Layout/header.jsp"/>
 
 		<section>
 			

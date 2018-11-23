@@ -4,16 +4,21 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<style>
+		a{
+			text-decoration: none;
+			color: black;
+			font-weight: bold;
+		}
+		</style>
 	</head>
 	<body>
 		<nav>
 			<c:if test="${empty member.u_id }">
-					로그인 필요
-					<div>
-						<div>
-							<jsp:include page="../Member/login.jsp"/>
-							<jsp:include page="../Member/join.jsp"/>
-						</div>
+					로그인을 해주세요
+					<div class="gnb">
+						<jsp:include page="../Member/login.jsp"/>
+						<jsp:include page="../Member/join.jsp"/>
 					</div>
 				</c:if>
 				<c:if test="${!empty member.u_id }">
