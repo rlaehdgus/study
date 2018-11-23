@@ -23,7 +23,7 @@
     top:50px;
     margin-left: -250px;
     width:500px;
-    height:500px;
+    height:450px;
     background-color:#FFF;
     z-index:10000;   
  }
@@ -61,8 +61,8 @@
  
         //애니메이션 효과 - 일단 0초동안 까맣게 됐다가 60% 불투명도로 간다.
 
-        /* $("#mask").fadeIn(0); */
-        $('#join_mask').fadeTo('fast',0.33);
+         /* $("#mask").fadeIn(0); */
+        	$('#join_mask').fadeTo('fast',0.33);       
  
         //윈도우 같은 거 띄운다.
         $('.join_window').show();
@@ -78,8 +78,8 @@
         //닫기 버튼을 눌렀을 때
         $('.join_window .join_close').click(function (e) {
             //링크 기본동작은 작동하지 않도록 한다.
-            e.preventDefault();  
-            $('#join_mask, .join_window').hide();  
+            e.preventDefault();
+            $('#join_mask, .join_window').hide();
         });
  
         //검은 막을 눌렀을 때
@@ -127,7 +127,7 @@
 	            <div style="width:500px;height:500px;">
 	            <h3 align="center">회원가입</h3>
 	            	<f:form modelAttribute="userVo" name="frm_up" action="user_add.do" method="POST">
-	            		<table style="margin: auto;">
+	            		<table style="margin: auto; margin-top: 30px;">
 	            			<tr>
 	            				<td>아이디</td>
 	            				<td><input type="text" name="u_id" /></td>
@@ -169,13 +169,7 @@
 	            	<button class="join_close"><span style="font-size: 30px;">X</span></button>
 	            </div>
             </div>
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-	            <tr>
-	              <td>
-	              	<a href="#" class="openjoin">회원가입</a>
-	              </td>
-	            </tr>
-            </table>
+	        <a href="#" class="openjoin">회원가입</a>
         </div>
     </div>
 </body>

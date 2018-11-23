@@ -3,6 +3,7 @@ package com.study.www;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,9 +29,10 @@ public class UserController {
 	public String user_add(@ModelAttribute("UserVO") UserVO userVo) {
 		logger.info("user_add start!");
 		
+		//회원가입 할 정보 저장
 		u_service.user_add(userVo);
 		
-		return "Member/sign_in";
+		return "redirect:main.do";
 	}
 	
 	@RequestMapping(value = {"/login_check.do"}, method = RequestMethod.POST)
@@ -38,18 +40,28 @@ public class UserController {
 		logger.info("user_add start!");
 		
 		//세션이 있을 경우 세션 초기화
-		if(session.getAttribute("userVo.u_id") != null) {
+		if(session.getAttribute("member") != null) {
 			session.invalidate();
 		}
 		
 		//로그인 할 정보를 usreVo 변수에 저장
 		userVo = u_service.login_check(userVo);
-		
-		if(session.getAttribute("userVo.u_id") == null) {
-			session.setAttribute("userVo", userVo);
+
+		//세션이 없을 경우 로그인 값을 세션에 저장
+		if(session.getAttribute("member") == null) {
+			session.setAttribute("member", userVo);
 		}
 		
-		return "Main/main";
+		return "redirect:main.do";
+	}
+	
+	@RequestMapping(value = {"/logout.do"}, method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		logger.info("logout start!");
+		
+		session.invalidate();
+		
+		return "redirect:main.do";
 	}
 	
 }

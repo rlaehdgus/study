@@ -20,6 +20,8 @@
 		<property name="username" value="root"/>
 		<property name="password" value="1234"/>
 	</bean> -->
+	
+	<!-- pcn mysql connection -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 		<property name="url" value="jdbc:log4jdbc:mysql://pcn-mysql1.ciexm6d8h3je.ap-northeast-2.rds.amazonaws.com:3306/appr3?useSSL=false"/>
@@ -34,7 +36,7 @@
 		<property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/>
 	</bean>
 	
-	<!-- mybatis -->
+	<!-- mybatis SqlSessionTemplateBean -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>

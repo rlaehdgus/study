@@ -20,10 +20,10 @@
     display: none;
     position:absolute;  
     left:50%;
-    top:50px;
+    top:150px;
     margin-left: -250px;
-    width:500px;
-    height:500px;
+    width:400px;
+    height:250px;
     background-color:#FFF;
     z-index:10000;   
  }
@@ -61,7 +61,7 @@
  
         //애니메이션 효과 - 일단 0초동안 까맣게 됐다가 60% 불투명도로 간다.
 
-        /* $("#mask").fadeIn(0); */
+        $("#mask").fadeIn(0);
         $('#login_mask').fadeTo('fast',0.33);
  
         //윈도우 같은 거 띄운다.
@@ -73,6 +73,12 @@
         $('.openLogin').click(function(e){
             e.preventDefault();
             Login();
+        });
+        
+        //회원가입 클릭 시 로그인 팝업창 닫기
+        $('td > .openjoin').click(function(){
+        	$('.login_window').css("display","none");
+        	$('#login_mask').css("display","none");
         });
  
         //닫기 버튼을 눌렀을 때
@@ -124,10 +130,10 @@
         <div id = "container">  
             <div id="login_mask"></div>
             <div class="login_window">
-	            <div style="width:500px;height:500px;">
+	            <div>
 	            <h3 align="center">로그인</h3>
 	            	<f:form modelAttribute="userVo" name="frm_in" action="login_check.do" method="POST">
-	            		<table style="margin: auto;">
+	            		<table style="margin: auto; margin-top: 30px;">
 	            			<tr>
 	            				<td>아이디</td>
 	            				<td><input type="text" name="u_id" /></td>
@@ -138,6 +144,8 @@
 	            			</tr>
 	            			<tr>
 	            				<td colspan="2" align="center">
+	            					<a href="#">아이디/비밀번호 찾기</a>
+	            					<a href="#" class="openjoin">회원가입</a><br>
 	            					<button type="submit" id="login_ok">로그인</button>
 	            				</td>
 	            			</tr>
@@ -146,13 +154,7 @@
 	            	<button class="login_close"><span style="font-size: 30px;">X</span></button>
 	            </div>
             </div>
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-	            <tr>
-	              <td>
-	              	<a href="#" class="openLogin">로그인</a>
-	              </td>
-	            </tr>
-            </table>
+	        <a href="#" class="openLogin">로그인</a>
         </div>
     </div>
 </body>
