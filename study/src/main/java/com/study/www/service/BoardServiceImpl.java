@@ -19,4 +19,12 @@ public class BoardServiceImpl implements BoardService {
 		
 		return b_mapper.BoardList();
 	}
+
+	@Override
+	public void board_add(BoardVO boardVo) {
+		
+		b_mapper.board_add(boardVo);
+	}
+	
+	
 }

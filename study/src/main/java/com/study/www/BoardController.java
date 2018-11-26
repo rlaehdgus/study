@@ -3,6 +3,7 @@ package com.study.www;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,10 +43,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = {"write_add.do"}, method = RequestMethod.GET)
-	public String write_add(@ModelAttribute("boardVo") BoardVO boardVo) {
+	public String write_add(@ModelAttribute("boardVo") BoardVO boardVo, HttpSession session) {
 		logger.info("write start!");
 		
-		return "Board/write";
+		b_service.board_add(boardVo);
+		
+		/*session.setAttribute("board", boardVo);*/
+		
+		return "redirect:list.do";
 	}
 	
 }
