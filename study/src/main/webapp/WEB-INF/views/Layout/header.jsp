@@ -7,7 +7,7 @@
 	<body>
 		<div>
 			<header>
-				<h2><a href="/main.do">Study Board</a></h2>
+				<h2><a href="/main.do">Spring Study</a></h2>
 			</header>
 		
 			<jsp:include page="../Layout/gnb.jsp"/>

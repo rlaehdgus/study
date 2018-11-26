@@ -19,6 +19,7 @@
 					<div class="gnb">
 						<jsp:include page="../Member/login.jsp"/>
 						<jsp:include page="../Member/join.jsp"/>
+						<a href="list.do">게시판</a>
 					</div>
 				</c:if>
 				<c:if test="${!empty member.u_id }">
