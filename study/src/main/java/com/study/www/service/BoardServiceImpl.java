@@ -21,9 +21,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void board_add(BoardVO boardVo) {
+	public void write_add(BoardVO boardVo) {
 		
-		b_mapper.board_add(boardVo);
+		b_mapper.write_add(boardVo);
 	}
 	
 	

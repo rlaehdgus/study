@@ -89,33 +89,6 @@
  
         }); */
     });
-    
-    /* $('#join_ok').click(function(){
-    	var frm = document.frm_up;    	
-    	var u_id = 	$('input[name=u_id]').val();
-    	var u_pw = 	$('input[name=u_pw]').val();
-    	var u_name = 	$('input[name=u_name]').val();
-    	var u_birth = 	$('input[name=u_birth]').val();
-    	var u_gende = 	$('input[name=u_gende]:checked').val();
-    	var u_email = 	$('input[name=u_email]').val();
-    	var u_addr1 = 	$('input[name=u_addr1]').val();
-    	var u_addr2 = 	$('input[name=u_addr2]').val();
-	
- 		$.ajax({
-     		url : '/user_add.do',
-     		type : 'post',
-     		data : {u_id:u_id, u_pw:u_pw, u_name:u_name, u_birth:u_birth, u_gende:u_gende, u_email:u_email, u_addr1:u_addr1, u_addr2:u_addr2},
-     		success : function(data){
-     			if(data){
-     				alert('회원가입 성공!');
-     				location.href('main.do');
-     			}else{
-     				alert('값을 제대로 입력해주세요.');
-     			}
-     		}
-     	});
-    });*/
-    
 //]]>
 </script>
 </head>
@@ -134,7 +107,7 @@
 	            			</tr>
 	            			<tr>
 	            				<td>비밀번호</td>
-	            				<td><input type="text" name="u_pw" /></td>
+	            				<td><input type="password" name="u_pw" /></td>
 	            			</tr>
 	            			<tr>
 	            				<td>이름</td>

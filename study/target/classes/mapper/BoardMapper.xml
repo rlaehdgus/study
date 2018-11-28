@@ -34,9 +34,11 @@
 	
 	<insert id="write_add" parameterType="boardVo">
 		INSERT INTO BOARD_INFO
-			(NO, B_TITLE, B_CONTENT, B_NAME, B_CHECK, B_DATE, B_PUB)
+			(B_TITLE, B_CONTENT, B_NAME)
 		VALUES
-			(#{no}, #{b_title}, #{b_content}, #{b_name}, #{b_check}, #{b_date}, #{b_pub})
+			(#{b_title}, #{b_content}, #{b_name})
 	</insert>
+	
+	
 
 </mapper>

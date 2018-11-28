@@ -5,32 +5,50 @@
 	<head>
 		<meta charset="UTF-8">
 		<style>
-		a{
-			text-decoration: none;
-			color: black;
-			font-weight: bold;
-		}
+			a {
+				text-decoration: none;
+				color: black;
+				font-weight: bold;
+			}
+			
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				text-align: center;
+			}
+			
+			li {
+				margin: 0;
+				padding: 10px;
+				border: 0;
+				display: inline;
+			}
+			
+			.gnb {
+				margin: 30px;
+			}
 		</style>
 	</head>
 	<body>
 		<nav>
-			<c:if test="${empty member.u_id }">
-					로그인을 해주세요
-					<div class="gnb">
-						<jsp:include page="../Member/login.jsp"/>
-						<jsp:include page="../Member/join.jsp"/>
-						<a href="list.do">게시판</a>
-					</div>
-				</c:if>
-				<c:if test="${!empty member.u_id }">
-					<span>${member.u_id }(${member.u_name })님 안녕하세요</span>
-					<div>
-						<div>
-							<a href="mypage.do">마이페이지</a><br>
-							<a href="logout.do">로그아웃</a>
-						</div>
-					</div>
-				</c:if>
+			<c:if test="${member.u_id eq 'admin' }">
+				<div class="gnb">
+					<ul>
+						<li><a href="list.do">게시판</a></li>
+					</ul>
+				</div>
+			</c:if>
+			<c:if test="${member.u_id ne 'admin' }">
+				<div class="gnb">
+					<ul>
+						<li><a href="list.do">게시판</a></li>
+						<li>미정</li>
+						<li>미정</li>
+						<li>미정</li>
+					</ul>
+				</div>
+			</c:if>
 		</nav>
 	</body>
 </html>

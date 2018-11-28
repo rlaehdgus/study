@@ -13,7 +13,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources location="/resources/"  mapping="/resources/**"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -30,7 +30,10 @@
 	<!-- 인터셉터 생성 -->
 	<interceptors>
 		<interceptor>
-			<mapping path=""/>
+			<mapping path="mypage.do"/>
+			<mapping path="write_add.do"/>
+			<mapping path="user_add.do"/>
+			<mapping path="write.do"/>
 			<beans:ref bean="loggerInterceptor"/> 
 		</interceptor>
 	</interceptors>

@@ -8,7 +8,7 @@
 		<title>mypage</title>
 	</head>
 	<body>
-		<jsp:include page="../Layout/gnb.jsp"/>
+		<jsp:include page="../Layout/header.jsp"/>
 		
 		<h2 align="center">mypage</h2>
 		

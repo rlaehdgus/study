@@ -24,8 +24,8 @@ public class BoardMapper {
 	}
 	
 	//게시글 등록
-	public void board_add(BoardVO boardVo) {
+	public void write_add(BoardVO boardVo) {
 		
-		sqlSession.insert(Namespace+".board_add", boardVo);
+		sqlSession.insert(Namespace+".write_add", boardVo);
 	}
 }

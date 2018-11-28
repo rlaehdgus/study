@@ -3,10 +3,12 @@ package com.study.www;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,9 +26,11 @@ public class BoardController {
 	@Inject
 	private BoardService b_service;
 	
-	@RequestMapping(value = {"list.do"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/list.do"}, method = RequestMethod.GET)
 	public String list(Model model) {
 		logger.info("list start!");
+		
+		
 		
 		List<BoardVO> boardVo = b_service.BoardList();
 		
@@ -35,20 +39,21 @@ public class BoardController {
 		return "Board/list";
 	}
 	
-	@RequestMapping(value = {"write.do"}, method = RequestMethod.GET)
-	public String write(@ModelAttribute("boardVo") BoardVO boardVo) {
+	@RequestMapping(value = {"/write.do"}, method = RequestMethod.GET)
+	public String write() {
 		logger.info("write start!");
 		
 		return "Board/write";
 	}
 	
-	@RequestMapping(value = {"write_add.do"}, method = RequestMethod.GET)
-	public String write_add(@ModelAttribute("boardVo") BoardVO boardVo, HttpSession session) {
+	@RequestMapping(value = {"/write_add.do"}, method = RequestMethod.POST)
+	public String write_add(@ModelAttribute("boardVo") BoardVO boardVo, HttpServletRequest req) {
 		logger.info("write start!");
+		System.out.println(req.getParameter("b_title"));
+		System.out.println(req.getParameter("b_name"));
+		System.out.println(req.getParameter("b_content"));
 		
-		b_service.board_add(boardVo);
-		
-		/*session.setAttribute("board", boardVo);*/
+		b_service.write_add(boardVo);
 		
 		return "redirect:list.do";
 	}
