@@ -12,21 +12,18 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-	<!-- myhome mysql connection -->
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-		<property name="url" value="jdbc:log4jdbc:mysql://root:3306/bbs?useSSL=false"/>
-		<property name="username" value="root"/>
-		<property name="password" value="1234"/>
-	</bean> -->
 	
-	<!-- pcn mysql connection -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:/config/config.properties"/>
+		<property name="fileEncoding" value="UTF-8"/>
+	</bean>
+	
+	<!-- mysql connection -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-		<property name="url" value="jdbc:log4jdbc:mysql://pcn-mysql1.ciexm6d8h3je.ap-northeast-2.rds.amazonaws.com:3306/appr3?useSSL=false"/>
-		<property name="username" value="appr3"/>
-		<property name="password" value="appr3"/>
+		<property name="driverClassName" value="${db.driver}"/>
+		<property name="url" value="${db.url}"/>
+		<property name="username" value="${db.username}"/>
+		<property name="password" value="${db.password}"/>
 	</bean>
 	
 	<!-- mybatis SqlSessionFactoryBean -->
