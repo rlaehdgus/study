@@ -20,14 +20,25 @@
 	</head>
 	<body>
 	<jsp:include page="../Layout/header.jsp"/>
-	
+		<form name="search_frm" method="post" action="Board/search.do">
+			<select name="searchOption">
+				<option value="all"><c:out value="${map.searchOption == 'all'?'selected':''}"/>제목+이름+내용</option>
+				<option value="writer"><c:out value="${map.searchOption == 'writer'?'selected':''}"/>이름</option>
+				<option value="content"><c:out value="${map.searchOption == 'content'?'selected':''}"/>내용</option>
+				<option value="title"><c:out value="${map.searchOption == 'title'?'selected':''}"/>제목</option>
+			</select>
+			<input name="keyword" value="${map.keyword}">
+			<input type="submit" value="조회">
+			<button type="button" id="btnWrite">글쓰기</button>
+		</form>
+		${map.count }개의 게시물이 있습니다.
 		<table style="margin: auto;">
 			<tr>
 				<th width="40px">번호</th>
 				<th width="400px">제목</th>
 				<th width="150px">작성자</th>
 				<th width="150px">작성일</th>
-				<th width="70px">읽은 수</th>
+				<th width="70px">조회수</th>
 			</tr>
 			<c:forEach items="${board}" var="board">
 			<tr>

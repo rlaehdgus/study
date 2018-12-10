@@ -7,7 +7,7 @@
 
 	<insert id="user_add" parameterType="userVo">
 		INSERT INTO USER_INFO
-			(U_ID, U_PW, U_NAME, U_BIRTH, U_GENDE, U_EMAIL, U_ADDR1 , U_ADDR2)
+			(U_ID, U_PW, U_NAME, U_BIRTH, U_GENDE, U_EMAIL, U_ADDR1, U_ADDR2)
 		VALUES
 			(#{u_id}, #{u_pw}, #{u_name}, #{u_birth}, #{u_gende}, #{u_email}, #{u_addr1}, #{u_addr2})
 	</insert>

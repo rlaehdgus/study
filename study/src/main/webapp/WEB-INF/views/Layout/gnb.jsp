@@ -35,14 +35,14 @@
 			<c:if test="${member.u_id eq 'admin' }">
 				<div class="gnb">
 					<ul>
-						<li><a href="list.do">게시판</a></li>
+						<li><a href="board_list.do">게시판</a></li>
 					</ul>
 				</div>
 			</c:if>
 			<c:if test="${member.u_id ne 'admin' }">
 				<div class="gnb">
 					<ul>
-						<li><a href="list.do">게시판</a></li>
+						<li><a href="board_list.do">게시판</a></li>
 						<li>미정</li>
 						<li>미정</li>
 						<li>미정</li>

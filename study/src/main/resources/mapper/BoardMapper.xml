@@ -12,25 +12,50 @@
 			B_CONTENT,
 			B_NAME,
 			B_CHECK,
-			B_DATE,
+			B_JOINDATE,
+			B_UPDATEDATE,
 			B_KATENAME,
 			B_PUB
 		FROM
 			BOARD_INFO
 		WHERE
-			B_NAME = #{b_name}
+			NO = #{no}
 	</select>
 	
-	<select id="BoardList" resultType="boardVo">
+	<select id="BoardList" parameterType="boardPager" resultType="boardVo">
 		SELECT
 			NO,
 			B_TITLE,
 			B_NAME,
 			B_CHECK,
-			B_DATE
+			B_JOINDATE
 		FROM
 			BOARD_INFO
+		ORDER BY NO DESC
+		LIMIT #{start},10
 	</select>
+	
+	<select id="countArticle" resultType="int">
+		SELECT COUNT(*) FROM BOARD_INFO
+	</select>
+	
+	<sql id="search">
+		<choose>
+			<!-- 검색옵션이 전체 검색일 경우 -->
+			<when test="searchOption == 'all'">
+				WHERE b.B_NAME = u.U_ID 
+				AND
+				(b_name like '%'||#{keyword}||'%'
+				OR b_content like '%'||#{keyword}||'%'
+				OR b_title like '%'||#{keyword}||'%')
+			</when>
+			<!-- 전체 검색이 아닐 경우 -->
+			<otherwise>
+				WHERE B_NAME = u.U_ID
+				AND ${searchOption} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
 	
 	<insert id="write_add" parameterType="boardVo">
 		INSERT INTO BOARD_INFO
@@ -39,6 +64,11 @@
 			(#{b_title}, #{b_content}, #{b_name})
 	</insert>
 	
-	
+	<update id="">
+		UPDATE
+			BOARD_INFO
+		SET
+			(B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_UPDATEDATE = now())
+	</update>
 
 </mapper>

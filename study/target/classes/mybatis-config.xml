@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.study.www.dto.UserVO" alias="userVo"/>
 		<typeAlias type="com.study.www.dto.BoardVO" alias="boardVo"/>
+		<typeAlias type="com.study.www.service.BoardPager" alias="boardPager"/>
 	</typeAliases>
 </configuration>
