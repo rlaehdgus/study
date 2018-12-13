@@ -39,6 +39,7 @@
 		<jsp:include page="../Layout/header.jsp"/>
 		
 		<f:form modelAttribute="boardVo" id="updateBoardFrm" action="write_update.do" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="no" value="${board.no }"/>
 			<table style="width: 710px; margin: auto;">
 				<tr>
 					<td>

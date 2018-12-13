@@ -21,11 +21,11 @@
     position:absolute;  
     left:50%;
     top:150px;
-    margin-left: -250px;
+    margin-left: -200px;
     width:400px;
     height:250px;
     background-color:#FFF;
-    z-index:10000;   
+    z-index:10000;
  }
  .login_close {
  		text-align: center;

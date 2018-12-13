@@ -31,44 +31,70 @@
 			B_JOINDATE
 		FROM
 			BOARD_INFO
+		WHERE
+			no > 0
+			<include refid="search"/>
 		ORDER BY NO DESC
 		LIMIT #{start},10
 	</select>
 	
 	<select id="countArticle" resultType="int">
-		SELECT COUNT(*) FROM BOARD_INFO
+		SELECT 
+			COUNT(*) 
+		FROM 
+			BOARD_INFO
+		WHERE
+			no > 0
+		<include refid="search"/>
 	</select>
 	
 	<sql id="search">
-		<choose>
-			<!-- 검색옵션이 전체 검색일 경우 -->
-			<when test="searchOption == 'all'">
-				WHERE b.B_NAME = u.U_ID 
-				AND
-				(b_name like '%'||#{keyword}||'%'
-				OR b_content like '%'||#{keyword}||'%'
-				OR b_title like '%'||#{keyword}||'%')
-			</when>
-			<!-- 전체 검색이 아닐 경우 -->
-			<otherwise>
-				WHERE B_NAME = u.U_ID
-				AND ${searchOption} like '%'||#{keyword}||'%'
-			</otherwise>
-		</choose>
+		<if test="searchOption != null">
+			<if test="searchOption == 't'.toString()">
+				 AND b_title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchOption == 'c'.toString()">
+				 AND b_content LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchOption == 'w'.toString()">
+				 AND b_name LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchOption == 'tc'.toString()">
+				 AND (
+				 	b_title LIKE CONCAT('%', #{keyword}, '%')
+				 	OR b_content LIKE CONCAT('%', #{keyword}, '%')
+				 )
+			</if>
+			<if test="searchOption == 'cw'.toString()">
+				 AND (
+				 	b_content LIKE CONCAT('%', #{keyword}, '%')
+				 	OR b_name LIKE CONCAT('%', #{keyword}, '%')
+				 )
+			</if>
+			<if test="searchOption == 'tcw'.toString()">
+				 AND (
+				 	b_title LIKE CONCAT('%', #{keyword}, '%')
+				 	OR b_content LIKE CONCAT('%', #{keyword}, '%')
+				 	OR b_name LIKE CONCAT('%', #{keyword}, '%')
+				 )
+			</if>
+		</if>
 	</sql>
 	
 	<insert id="write_add" parameterType="boardVo">
 		INSERT INTO BOARD_INFO
-			(B_TITLE, B_CONTENT, B_NAME)
+			(B_TITLE, B_CONTENT, B_NAME, B_JOINDATE)
 		VALUES
-			(#{b_title}, #{b_content}, #{b_name})
+			(#{b_title}, #{b_content}, #{b_name}, now())
 	</insert>
 	
-	<update id="">
+	<update id="write_update" parameterType="boardVo">
 		UPDATE
 			BOARD_INFO
 		SET
-			(B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_UPDATEDATE = now())
+			B_TITLE = #{b_title}, B_CONTENT = #{b_content}, B_UPDATEDATE = now()
+		WHERE
+			NO = #{no}
 	</update>
 
 </mapper>

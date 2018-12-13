@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -21,10 +23,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 어노테이션을 자동으로 검색하지 않고 include-filter 태그에 해당하는 어노테이션만 검색 후 bean 등록을 함 -->
 	<context:component-scan base-package="com.study.www" />
 	
+	<!-- @Aspect를 bean으로 등록 -->
+	<!-- <aop:aspectj-autoproxy/>
+	<beans:bean id="loggerAspect" class="com.study.www.logger.LoggerAspect" /> -->
+	
 	<!-- 인터셉터 객체 생성 -->
-	<beans:bean id="loggerInterceptor" class="com.study.www.interceptor.LoggerInterceptor">
+	<beans:bean id="loggerInterceptor" class="com.study.www.logger.LoggerInterceptor">
 	</beans:bean>
 	
 	<!-- 인터셉터 생성 -->

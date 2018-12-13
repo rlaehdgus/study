@@ -32,7 +32,7 @@ public class BoardController {
 	private BoardService b_service;
 	
 	@RequestMapping(value = {"/board_list.do"}, method = RequestMethod.GET)
-	public ModelAndView board_list(@RequestParam(defaultValue="title") String searchOption, @RequestParam(defaultValue="") String keyword, @RequestParam(defaultValue="1") int curPage) throws Exception {
+	public ModelAndView board_list(@RequestParam(defaultValue="null") String searchOption, @RequestParam(defaultValue="") String keyword, @RequestParam(defaultValue="1") int curPage) throws Exception {
 		logger.info("board_list start!");
 		
 		//레코드의 갯수 계산
@@ -44,8 +44,7 @@ public class BoardController {
 		int end = boardPager.getPageEnd();
 		
 		List<BoardVO> list = b_service.BoardList(start, end, searchOption, keyword);
-		
-		
+				
 		//데이터를 맵에 저장
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
@@ -99,7 +98,7 @@ public class BoardController {
 		return "Board/board_update";
 	}
 	
-	@RequestMapping(value = {"write_update.do"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"/write_update.do"}, method = RequestMethod.POST)
 	public String write_update(@ModelAttribute("boardVo") BoardVO boardVo) throws Exception {
 		logger.info("write_update start!");
 		

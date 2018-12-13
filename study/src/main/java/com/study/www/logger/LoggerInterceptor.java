@@ -1,4 +1,4 @@
-package com.study.www.interceptor;
+package com.study.www.logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,21 +11,19 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
-	protected Logger log = LoggerFactory.getLogger(LoggerInterceptor.class); //Log ��ü ����
+	protected Logger log = LoggerFactory.getLogger(LoggerInterceptor.class); 
 	
-	/* ��ó���� �޼���(Controller�� ����Ǳ� ���� ����ȴ� */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		if(log.isDebugEnabled()) {
-			log.debug("========================================= START ========================================="); //��û�� �������� ��輱
-			log.debug(" Reguest URI \t:  "+request.getRequestURI()); //���� ȣ��� URI�� �������� ������
+			log.debug("========================================= START =========================================");
+			log.debug(" Reguest URI \t:  "+request.getRequestURI());
 		}
 		return super.preHandle(request, response, handler);
 	}
 	
-	/* ��ó���� �޼���(Controller�� ����� �� ȣ��ȴ�.) */
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		log.debug("========================================= END ========================================="); //��û�� �������� ��輱
+		log.debug("========================================= END =========================================");
 	}
 }

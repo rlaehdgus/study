@@ -16,22 +16,33 @@
 			border-bottom: 1px solid #444444;
     	padding: 10px;
 		} */
+		#search_frm {
+			text-align: center;
+		}
 		</style>
 	</head>
 	<body>
 	<jsp:include page="../Layout/header.jsp"/>
-		<form name="search_frm" method="post" action="Board/board_search.do">
+		<form name="search_frm" id="search_frm" method="get" action="board_list.do">
 			<select name="searchOption">
-				<option value="all"><c:out value="${map.searchOption == 'all'?'selected':''}"/>제목+이름+내용</option>
-				<option value="b_name"><c:out value="${map.searchOption == 'b_name'?'selected':''}"/>이름</option>
-				<option value="b_content"><c:out value="${map.searchOption == 'b_content'?'selected':''}"/>내용</option>
-				<option value="b_title"><c:out value="${map.searchOption == 'b_title'?'selected':''}"/>제목</option>
+				<option value="n"><c:out value="${map.searchOption == null ?'':''}"/>--------- 선택 ---------</option>
+				<option value="t"><c:out value="${map.searchOption eq 't'?'':''}"/>제목</option>
+				<option value="c"><c:out value="${map.searchOption eq 'c'?'':''}"/>내용</option>
+				<option value="w"><c:out value="${map.searchOption eq 'w'?'':''}"/>작성자</option>
+				<option value="tc"><c:out value="${map.searchOption eq 'tc'?'':''}"/>제목+내용</option>
+				<option value="cw"><c:out value="${map.searchOption eq 'cw'?'':''}"/>내용+작성자</option>
+				<option value="tcw"><c:out value="${map.searchOption eq 'tcw'?'':''}"/>제목+내용+작성자</option>
 			</select>
-			<input name="keyword" value="${map.keyword}">
-			<input type="submit" value="검색">
+			<input type="text" name="keyword" value="${map.keyword}">
+			<input type="submit" value="검색"><br>
+			<c:if test="${map.searchOption eq 'null' }">
+				${map.count }개의 게시물이 있습니다.
+			</c:if>
+			<c:if test="${map.searchOption ne 'null' }">
+				${map.keyword }에 관한 ${map.count }개의 게시물이 검색되었습니다.
+			</c:if>
 		</form>
-		${map.count }개의 게시물이 있습니다.
-		<table style="margin: auto;">
+		<table id="" style="margin: auto;">
 			<tr>
 				<th width="40px">번호</th>
 				<th width="400px">제목</th>
@@ -44,18 +55,14 @@
 				<td><a href="board_view.do?no=${board.no }">${board.no }</a></td>
 				<td>${board.b_title }</td>
 				<td>${board.b_name }</td>
-				<td>${board.b_date }</td>
+				<td>${board.b_joindate }</td>
 				<td>${board.b_check }</td>
 			</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="5" align="center">
 					<c:if test="${map.boardPager.curBlock > 1}">
-						<a href="javascript:list('1')">처음</a>
-					</c:if>
-					
-					<c:if test="${map.boardPager.curBlock > 1}">
-						<a href="javascript:list('${map.boardPager.prevPage}')">[이전]</a>
+						<a href="board_list.do?prevPage=${map.boardPager.prevPage}">[이전]</a>
 					</c:if>
 					
 					<c:forEach var="num" varStatus="nums" begin="${map.boardPager.blockBegin}" end="${map.boardPager.blockEnd}">
@@ -64,17 +71,13 @@
 								<span style="color: red">${num}</span>&nbsp;
 							</c:when>
 							<c:otherwise>
-								<a href="list.do?curPage=${nums.index}">${num}</a>&nbsp;
+								<a href="board_list.do?curPage=${nums.index}">${num}</a>&nbsp;
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					
 					<c:if test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
-						<a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
-					</c:if>
-					
-					<c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
-						<a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
+						<a href="board_list.do?nextPage=${map.boardPager.nextPage}">[다음]</a>
 					</c:if>
 				</td>
 			</tr>
